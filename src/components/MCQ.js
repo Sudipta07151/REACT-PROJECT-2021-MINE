@@ -18,6 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import createMCQ from './createMCQ';
+import CreateMCQ from './createMCQ';
 
 const drawerWidth = 240;
 
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Blog = (props) => {
+const MCQ = (props) => {
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -67,7 +69,7 @@ const Blog = (props) => {
     const menuItems = [
         {
             key: 1,
-            item: 'View All',
+            item: 'View All Created',
             icon: <ViewComfyRoundedIcon />
         },
         {
@@ -110,7 +112,7 @@ const Blog = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Responsive drawer
+                        MCQ SECTION
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -147,19 +149,10 @@ const Blog = (props) => {
             </nav>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-                    facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-                    tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-                    tis orci a.
-                </Typography>
+                <CreateMCQ />
             </main>
         </div>
     );
 }
 
-export default Blog;
+export default MCQ;
