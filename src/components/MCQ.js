@@ -18,9 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import createMCQ from './createMCQ';
 import CreateMCQ from './createMCQ';
-
+import ViewAllMcq from './ViewAllMcq'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -70,12 +70,14 @@ const MCQ = (props) => {
         {
             key: 1,
             item: 'View All Created',
-            icon: <ViewComfyRoundedIcon />
+            icon: <ViewComfyRoundedIcon />,
+            link: '/'
         },
         {
             key: 2,
-            item: 'Create',
-            icon: <AddCircleOutlineIcon />
+            item: 'Create New',
+            icon: <AddCircleOutlineIcon />,
+            link: '/CreateMCQ'
         }
     ]
 
@@ -84,8 +86,8 @@ const MCQ = (props) => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                {menuItems.map(({ key, item, icon }) => (
-                    <ListItem button key={key}>
+                {menuItems.map(({ key, item, icon, link }) => (
+                    <ListItem button key={key} component={Link} to={link}>
                         <ListItemIcon >{icon}</ListItemIcon>
                         <ListItemText primary={item} />
                     </ListItem>
@@ -98,60 +100,69 @@ const MCQ = (props) => {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        MCQ SECTION
+        <Router>
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            className={classes.menuButton}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap>
+                            MCQ SECTION
           </Typography>
-                </Toolbar>
-            </AppBar>
-            <nav className={classes.drawer} aria-label="mailbox folders">
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Hidden smUp implementation="css">
-                    <Drawer
-                        container={container}
-                        variant="temporary"
-                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                        open={mobileOpen}
-                        onClose={handleDrawerToggle}
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        ModalProps={{
-                            keepMounted: true
-                        }}
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                    <Drawer
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        variant="permanent"
-                        open
-                    >
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-            </nav>
-            <main className={classes.content}>
-                <div className={classes.toolbar} />
-                <CreateMCQ />
-            </main>
-        </div>
+                    </Toolbar>
+                </AppBar>
+                <nav className={classes.drawer} aria-label="mailbox folders">
+                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                    <Hidden smUp implementation="css">
+                        <Drawer
+                            container={container}
+                            variant="temporary"
+                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                            open={mobileOpen}
+                            onClose={handleDrawerToggle}
+                            classes={{
+                                paper: classes.drawerPaper,
+                            }}
+                            ModalProps={{
+                                keepMounted: true
+                            }}
+                        >
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                    <Hidden xsDown implementation="css">
+                        <Drawer
+                            classes={{
+                                paper: classes.drawerPaper,
+                            }}
+                            variant="permanent"
+                            open
+                        >
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                </nav>
+                <main className={classes.content}>
+                    <div className={classes.toolbar} />
+                    <Switch>
+                        <Route exact path="/CreateMCQ">
+                            <CreateMCQ />
+                        </Route>
+                        <Route exact path="/">
+                            <ViewAllMcq />
+                        </Route>
+                    </Switch>
+                </main>
+            </div>
+        </Router>
     );
 }
 

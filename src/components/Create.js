@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1
@@ -24,6 +24,12 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(7),
         height: theme.spacing(7),
     },
+    navbar: {
+        backgroundColor: '#f50057',
+    },
+    navElement: {
+        color: '#fce4ec'
+    }
 }));
 
 
@@ -35,17 +41,23 @@ const Create = () => {
     const labels = [
         {
             key: '1',
-            icon: <NoteAddRoundedIcon />,
+            icon: <NoteAddRoundedIcon className={classes.navElement} />,
             label: 'CREATE',
+            link: '/MCQ'
         },
         {
             key: '2',
-            icon: <LibraryBooksRoundedIcon />,
+            icon: <LibraryBooksRoundedIcon className={classes.navElement} />,
             label: 'LIBRARY',
+            link: '/Library'
         }
     ]
-    const returnTab = labels.map(({ icon, label, key }) => {
-        return <Tab icon={icon} label={label} key={key} />
+    const returnTab = labels.map(({ icon, label, key, link }) => {
+        return (
+            <Tab
+                icon={icon} label={label} key={key} component={Link} to={link}
+            />
+        );
     });
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -63,6 +75,7 @@ const Create = () => {
                             indicatorColor="secondary"
                             textColor="secondary"
                             aria-label="icon label tabs example"
+                            className={classes.navbar}
                         >
                             {returnTab}
                         </Tabs>
@@ -84,6 +97,9 @@ const Create = () => {
                                 alt="Remy Sharp"
                                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                                 className={matches ? classes.small : classes.large}
+                                onClick={(e) => {
+                                    console.log(e);
+                                }}
                             />
 
                         </div>
