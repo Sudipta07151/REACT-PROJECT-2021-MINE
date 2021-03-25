@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import InputBase from '@material-ui/core/InputBase';
 import Questions from './Questions';
-
+import Container from '@material-ui/core/Container';
 
 const BootstrapInput = withStyles((theme) => ({
     root: {
@@ -70,41 +70,43 @@ const CreateMCQ = () => {
     };
     return (
         <div>
-            <div className={classes.root}>
-                <TextField
-                    id="filled-full-width"
-                    label=" "
-                    style={{ margin: 8 }}
-                    placeholder="How are you?"
-                    helperText="INSERT YOUR QUESTION HERE"
-                    fullWidth={true}
-                    margin="normal"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    variant="filled"
-                    required={true}
-                />
-            </div>
-            <FormControl className={classes.margin}>
-                <InputLabel id="demo-customized-select-label">Number Of Questions</InputLabel>
-                <Select
-                    labelId="demo-customized-select-label"
-                    id="demo-customized-select"
-                    value={numOFQuestion}
-                    onChange={handleChange}
-                    input={<BootstrapInput />}
-                >
-                    <MenuItem value="">
-                        <em value={0}>None</em>
-                    </MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
-                    <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                </Select>
-            </FormControl>
-            <Questions number={numOFQuestion} />
+            <Container>
+                <div className={classes.root}>
+                    <TextField
+                        id="filled-full-width"
+                        label=" "
+                        style={{ margin: 8 }}
+                        placeholder="How are you?"
+                        helperText="INSERT YOUR QUESTION HERE"
+                        fullWidth={true}
+                        margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        variant="filled"
+                        required={true}
+                    />
+                </div>
+                <FormControl className={classes.margin}>
+                    <InputLabel id="demo-customized-select-label">Number Of Questions</InputLabel>
+                    <Select
+                        labelId="demo-customized-select-label"
+                        id="demo-customized-select"
+                        value={numOFQuestion}
+                        onChange={handleChange}
+                        input={<BootstrapInput />}
+                    >
+                        <MenuItem value="">
+                            <em value={0}>None</em>
+                        </MenuItem>
+                        <MenuItem value={2}>2</MenuItem>
+                        <MenuItem value={3}>3</MenuItem>
+                        <MenuItem value={4}>4</MenuItem>
+                        <MenuItem value={5}>5</MenuItem>
+                    </Select>
+                </FormControl>
+                <Questions number={numOFQuestion} />
+            </Container>
         </div>
     );
 }

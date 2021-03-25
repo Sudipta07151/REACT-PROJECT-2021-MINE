@@ -31,17 +31,21 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             width: drawerWidth,
             flexShrink: 0,
+            position: 'relative'
         },
     },
     appBar: {
         [theme.breakpoints.up('sm')]: {
-            width: `calc(100% - ${drawerWidth}px)`,
+            // width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
         },
+        backgroundColor: '#ffab00',
+        position: 'absolute',
+        top: '70px'
     },
     menuButton: {
         marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up()]: {
             display: 'none',
         },
     },
@@ -54,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    navbar: {
+        position: 'absolute'
+    }
 }));
 
 const MCQ = (props) => {
@@ -61,7 +68,6 @@ const MCQ = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -87,7 +93,12 @@ const MCQ = (props) => {
             <Divider />
             <List>
                 {menuItems.map(({ key, item, icon, link }) => (
-                    <ListItem button key={key} component={Link} to={link}>
+                    <ListItem
+                        button
+                        key={key}
+                        component={Link}
+                        to={link}
+                        onClick={handleDrawerToggle}>
                         <ListItemIcon >{icon}</ListItemIcon>
                         <ListItemText primary={item} />
                     </ListItem>
@@ -139,7 +150,7 @@ const MCQ = (props) => {
                         </Drawer>
                     </Hidden>
                     <Hidden xsDown implementation="css">
-                        <Drawer
+                        {/* <Drawer
                             classes={{
                                 paper: classes.drawerPaper,
                             }}
@@ -147,7 +158,7 @@ const MCQ = (props) => {
                             open
                         >
                             {drawer}
-                        </Drawer>
+                        </Drawer> */}
                     </Hidden>
                 </nav>
                 <main className={classes.content}>
