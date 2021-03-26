@@ -60,7 +60,7 @@ const Navbar = () => {
         {
             key: '1',
             icon: <NoteAddRoundedIcon />,
-            label: 'CREATE',
+            label: 'MCQ',
             link: '/MCQ'
         },
         {

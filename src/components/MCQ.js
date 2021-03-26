@@ -77,13 +77,13 @@ const MCQ = (props) => {
             key: 1,
             item: 'View All Created',
             icon: <ViewComfyRoundedIcon />,
-            link: '/'
+            link: '/view'
         },
         {
             key: 2,
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
-            link: '/CreateMCQ'
+            link: '/create'
         }
     ]
 
@@ -164,10 +164,10 @@ const MCQ = (props) => {
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Switch>
-                        <Route exact path="/CreateMCQ">
+                        <Route exact path="/create">
                             <CreateMCQ />
                         </Route>
-                        <Route exact path="/">
+                        <Route exact path="/view">
                             <ViewAllMcq />
                         </Route>
                     </Switch>

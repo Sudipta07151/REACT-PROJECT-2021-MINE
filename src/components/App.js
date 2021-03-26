@@ -20,7 +20,7 @@ const App = () => {
         <Router>
             <Navbar className={classes.navbar} />
             <Switch>
-                <Route exact path='/'>
+                <Route path='/'>
                     <MCQ />
                 </Route>
                 <Route exact path='/MCQ'>
@@ -30,6 +30,9 @@ const App = () => {
                     <Blogs />
                 </Route>
                 <Route exact path='/Library'>
+                    <Library />
+                </Route>
+                <Route exact path='/MCQ/:id'>
                     <Library />
                 </Route>
             </Switch>
