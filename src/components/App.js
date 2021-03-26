@@ -2,9 +2,10 @@ import React from 'react';
 import MCQ from './MCQ';
 import Blogs from './Blogs';
 import Library from './Library';
-import Navbar from './Navbar'
+import Navbar from './Navbar';
+import SignUp from './SignUp';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -20,7 +21,7 @@ const App = () => {
         <Router>
             <Navbar className={classes.navbar} />
             <Switch>
-                <Route path='/'>
+                <Route exact path='/'>
                     <MCQ />
                 </Route>
                 <Route exact path='/MCQ'>
@@ -34,6 +35,9 @@ const App = () => {
                 </Route>
                 <Route exact path='/MCQ/:id'>
                     <Library />
+                </Route>
+                <Route exact path='/SignUp'>
+                    <SignUp />
                 </Route>
             </Switch>
         </Router>

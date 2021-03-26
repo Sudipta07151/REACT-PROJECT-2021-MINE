@@ -118,8 +118,16 @@ const Navbar = () => {
                                     fullWidth={true}
                                     className={classes.loginSignupBtn}
                                 >
-                                    <Button>Login</Button>
-                                    <Button>SignUp</Button>
+                                    <Button
+                                        component={Link}
+                                        to='/Login'
+                                    >
+                                        Login</Button>
+                                    <Button
+                                        component={Link}
+                                        to='/SignUp'
+                                    >
+                                        SignUp</Button>
                                 </ButtonGroup>
                             </Grid>
                             <Grid item xs={1} md={1} lg={1} container direction="row" justify="center" alignItems="center">
