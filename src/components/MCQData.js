@@ -24,21 +24,22 @@ const menuItems = [
 
 const MCQData = () => {
     const [list, setList] = useState([]);
-    setList(
-        menuItems.map(({ key, item, icon, link }) => (
-            <ListItem
-                button
-                key={key}
-                component={Link}
-                to={link}
-                onClick={handleDrawerToggle}>
-                <ListItemIcon >{icon}</ListItemIcon>
-                <ListItemText primary={item} />
-            </ListItem>
-        )
-        )
+        setList(
+            menuItems.map(({ key, item, icon, link }) => (
+                <ListItem
+                    button
+                    key={key}
+                    component={Link}
+                    to={link}
+                    onClick={handleDrawerToggle}>
+                    <ListItemIcon >{icon}</ListItemIcon>
+                    <ListItemText primary={item} />
+                </ListItem>
+            ))
+        );
+    },
 
-return (
+    return (
         <MCQ>
             {list}
         </MCQ>

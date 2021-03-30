@@ -32,10 +32,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://images.unsplash.com/photo-1470509037663-253afd7f0f51?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80)',
+    backgroundImage: 'url(https://images.unsplash.com/photo-1567923161705-6a747b0db7a1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80)',
     backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundColor: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -67,14 +66,12 @@ const SignUp = () => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar className={classes.avatar} />
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <form className={classes.form} noValidate>
-            <TextField
+            {/* <TextField
               variant="outlined"
               margin="normal"
               required
@@ -99,7 +96,7 @@ const SignUp = () => {
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -107,7 +104,7 @@ const SignUp = () => {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Sign In With Google
             </Button>
             <Grid container>
               <Grid item xs>

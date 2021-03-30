@@ -16,6 +16,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core'
 import { pink, purple, yellow } from '@material-ui/core/colors'
 import Box from '@material-ui/core/Box';
 import { shadows } from '@material-ui/system';
+import { useLocation } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -55,25 +56,41 @@ const theme = createMuiTheme({
 const Navbar = () => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [url, setUrl] = React.useState('');
+    const location = useLocation();
+    React.useEffect(() => {
+        if (url != location.pathname) {
+            if (location.pathname == '/Library') {
+                setValue(0);
+            }
+            if (location.pathname == '/BlogsMain') {
+                setValue(1);
+            }
+            if (location.pathname == '/MCQ') {
+                setValue(2);
+            }
+            setUrl(location.pathname);
+        }
+    });
     const matches = useMediaQuery('(max-width:600px)');
     const labels = [
         {
             key: '1',
-            icon: <NoteAddRoundedIcon />,
-            label: 'MCQ',
-            link: '/MCQ'
-        },
-        {
-            key: '2',
             icon: <LibraryBooksRoundedIcon />,
             label: 'LIBRARY',
             link: '/Library'
         },
         {
-            key: '3',
+            key: '2',
             icon: <LibraryBooksRoundedIcon />,
             label: 'BLOGS',
-            link: '/Blogs'
+            link: '/BlogsMain'
+        },
+        {
+            key: '3',
+            icon: <NoteAddRoundedIcon />,
+            label: 'MCQ',
+            link: '/MCQ'
         }
     ]
     const returnTab = labels.map(({ icon, label, key, link }) => {

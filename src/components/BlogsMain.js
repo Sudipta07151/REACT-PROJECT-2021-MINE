@@ -18,9 +18,9 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CreateMCQ from './createMCQ';
-import ViewAllMcq from './ViewAllMcq'
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useHistory } from 'react-router-dom'
+import Blogs from './Blogs';
+import ViewAllBlogs from './ViewAllBlogs'
+import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -63,22 +63,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const MCQ = (props) => {
+const BlogsMain = (props) => {
     const { window } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const history = useHistory();
-    const handleDrawerToggle = (link) => {
-        if (link == 'MCQ/create') {
-            console.log(history);
-            history.push(link);
-            console.log(history);
-        }
+    const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
     const location = useLocation();
-
+    const param = useParams();
     const menuItems = [
         {
             key: 1,
@@ -90,7 +84,7 @@ const MCQ = (props) => {
             key: 2,
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
-            link: `MCQ/create`
+            link: `MCQ/blogs`
         }
     ]
 
@@ -103,10 +97,9 @@ const MCQ = (props) => {
                     <ListItem
                         button
                         key={key}
-                        // component={Link}
-                        // to={link}
-                        onClick={() => { handleDrawerToggle(link) }}
-                    >
+                        component={Link}
+                        to={link}
+                        onClick={handleDrawerToggle}>
                         <ListItemIcon >{icon}</ListItemIcon>
                         <ListItemText primary={item} />
                     </ListItem>
@@ -134,7 +127,7 @@ const MCQ = (props) => {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap>
-                            MCQ SECTION
+                            BLOGS SECTION
           </Typography>
                     </Toolbar>
                 </AppBar>
@@ -158,32 +151,22 @@ const MCQ = (props) => {
                         </Drawer>
                     </Hidden>
                     <Hidden xsDown implementation="css">
-                        {/* <Drawer
-                            classes={{
-                                paper: classes.drawerPaper,
-                            }}
-                            variant="permanent"
-                            open
-                        >
-                            {drawer}
-                        </Drawer> */}
                     </Hidden>
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
                     <Switch>
-                        <Route exact path="/MCQ/create">
-                            <CreateMCQ />
+                        <Route exact path="/MCQ/blogs">
+                            <Blogs />
                         </Route>
                         <Route exact path="/MCQ/view">
-                            <ViewAllMcq />
+                            <ViewAllBlogs />
                         </Route>
                     </Switch>
                 </main>
             </div>
-            <div>{location.pathname}</div>
         </Router>
     );
 }
 
-export default MCQ;
+export default BlogsMain;
