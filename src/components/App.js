@@ -35,6 +35,9 @@ const App = () => {
                 <Route exact path="/BlogsMain">
                     <BlogsMain />
                 </Route>
+                <Route exact path='/BlogsMain/:routes'>
+                    <BlogsMain />
+                </Route>
                 <Route exact path='/Library'>
                     <Library />
                 </Route>

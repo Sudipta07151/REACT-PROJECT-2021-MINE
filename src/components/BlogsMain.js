@@ -20,7 +20,8 @@ import ViewComfyRoundedIcon from '@material-ui/icons/ViewComfyRounded';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Blogs from './Blogs';
 import ViewAllBlogs from './ViewAllBlogs'
-import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams } from 'react-router-dom'
+import AllBlogPosts from './AllBlogPosts'
+import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams, useHistory } from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -68,24 +69,47 @@ const BlogsMain = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const handleDrawerToggle = () => {
+    const [url, setUrl] = React.useState('/BlogsMain');
+    const history = useHistory();
+    const handleDrawerToggle = (link) => {
+        setUrl(url);
+        history.push('/BlogsMain');
+        if (link == 'BlogsMain/all') {
+            history.push('BlogsMain/all');
+            setUrl('BlogsMain/all');
+        }
+        else if (link == 'BlogsMain/view') {
+            history.push('BlogsMain/view');
+            setUrl('BlogsMain/view');
+        }
+        else if (link == 'BlogsMain/blogs') {
+            history.push('BlogsMain/blogs');
+            setUrl('BlogsMain/blogs');
+        }
+        else {
+            history.push(url);
+        }
         setMobileOpen(!mobileOpen);
     };
-    const location = useLocation();
-    const param = useParams();
     const menuItems = [
         {
             key: 1,
-            item: 'View All Created',
-            icon: <ViewComfyRoundedIcon />,
-            link: `MCQ/view`
+            item: 'All Blogs',
+            icon: <AddCircleOutlineIcon />,
+            link: `BlogsMain/all`
         },
         {
             key: 2,
+            item: 'View All Created',
+            icon: <ViewComfyRoundedIcon />,
+            link: `BlogsMain/view`
+        },
+        {
+            key: 3,
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
-            link: `MCQ/blogs`
-        }
+            link: `BlogsMain/blogs`
+        },
     ]
 
     const drawer = (
@@ -97,9 +121,10 @@ const BlogsMain = (props) => {
                     <ListItem
                         button
                         key={key}
-                        component={Link}
-                        to={link}
-                        onClick={handleDrawerToggle}>
+                        // component={Link}
+                        // to={link}
+                        onClick={() => { handleDrawerToggle(link) }}
+                    >
                         <ListItemIcon >{icon}</ListItemIcon>
                         <ListItemText primary={item} />
                     </ListItem>
@@ -155,17 +180,12 @@ const BlogsMain = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <Switch>
-                        <Route exact path="/MCQ/blogs">
-                            <Blogs />
-                        </Route>
-                        <Route exact path="/MCQ/view">
-                            <ViewAllBlogs />
-                        </Route>
-                    </Switch>
+                    {url == 'BlogsMain/blogs' ? <Blogs /> : null}
+                    {url == 'BlogsMain/view' ? <ViewAllBlogs /> : null}
+                    {url == 'BlogsMain/all' ? <AllBlogPosts /> : null}
                 </main>
             </div>
-        </Router>
+        </Router >
     );
 }
 

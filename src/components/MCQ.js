@@ -27,13 +27,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    // drawer: {
-    //     [theme.breakpoints.up('sm')]: {
-    //         width: drawerWidth,
-    //         flexShrink: 0,
-    //         position: 'relative'
-    //     },
-    // },
     appBar: {
         [theme.breakpoints.up('sm')]: {
             // width: `calc(100% - ${drawerWidth}px)`,
@@ -68,16 +61,25 @@ const MCQ = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [url, setUrl] = React.useState('/MCQ');
     const history = useHistory();
+    const location = useLocation();
     const handleDrawerToggle = (link) => {
+        setUrl(url);
+        history.push('/MCQ');
         if (link == 'MCQ/create') {
-            console.log(history);
-            history.push(link);
-            console.log(history);
+            history.push('MCQ/create');
+            setUrl('MCQ/create');
+        }
+        else if (link == 'MCQ/view') {
+            history.push('MCQ/view');
+            setUrl('MCQ/view');
+        }
+        else {
+            history.push(url);
         }
         setMobileOpen(!mobileOpen);
     };
-    const location = useLocation();
 
     const menuItems = [
         {
@@ -171,17 +173,10 @@ const MCQ = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
-                    <Switch>
-                        <Route exact path="/MCQ/create">
-                            <CreateMCQ />
-                        </Route>
-                        <Route exact path="/MCQ/view">
-                            <ViewAllMcq />
-                        </Route>
-                    </Switch>
+                    {url == 'MCQ/create' ? <CreateMCQ /> : null}
+                    {url == 'MCQ/view' ? <ViewAllMcq /> : null}
                 </main>
             </div>
-            <div>{location.pathname}</div>
         </Router>
     );
 }
