@@ -21,6 +21,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Blogs from './Blogs';
 import ViewAllBlogs from './ViewAllBlogs'
 import AllBlogPosts from './AllBlogPosts'
+import FavouritePosts from './FavouritePosts'
+import FaceIcon from '@material-ui/icons/Face'
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import StarsIcon from '@material-ui/icons/Stars';
 import { BrowserRouter as Router, Route, Switch, Link, useLocation, useParams, useHistory } from 'react-router-dom'
 const drawerWidth = 240;
 
@@ -86,6 +90,10 @@ const BlogsMain = (props) => {
             history.push('BlogsMain/blogs');
             setUrl('BlogsMain/blogs');
         }
+        else if (link == 'BlogsMain/favourites') {
+            history.push('BlogsMain/favourites');
+            setUrl('BlogsMain/favourites');
+        }
         else {
             history.push(url);
         }
@@ -95,13 +103,13 @@ const BlogsMain = (props) => {
         {
             key: 1,
             item: 'All Blogs',
-            icon: <AddCircleOutlineIcon />,
+            icon: <SupervisedUserCircleIcon />,
             link: `BlogsMain/all`
         },
         {
             key: 2,
             item: 'View All Created',
-            icon: <ViewComfyRoundedIcon />,
+            icon: <FaceIcon />,
             link: `BlogsMain/view`
         },
         {
@@ -109,6 +117,12 @@ const BlogsMain = (props) => {
             item: 'Create New',
             icon: <AddCircleOutlineIcon />,
             link: `BlogsMain/blogs`
+        },
+        {
+            key: 4,
+            item: 'Your Favourite',
+            icon: <StarsIcon />,
+            link: `BlogsMain/favourites`
         },
     ]
 
@@ -180,9 +194,11 @@ const BlogsMain = (props) => {
                 </nav>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
+                    {url == '/BlogsMain' ? <AllBlogPosts /> : null}
                     {url == 'BlogsMain/blogs' ? <Blogs /> : null}
                     {url == 'BlogsMain/view' ? <ViewAllBlogs /> : null}
                     {url == 'BlogsMain/all' ? <AllBlogPosts /> : null}
+                    {url == 'BlogsMain/favourites' ? <FavouritePosts /> : null}
                 </main>
             </div>
         </Router >

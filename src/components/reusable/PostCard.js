@@ -9,7 +9,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import { blue, green, red, yellow, pink } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
@@ -19,6 +19,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import { makeStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,14 +35,33 @@ const useStyles = makeStyles((theme) => ({
     shapeCircle: {
         borderRadius: '50%',
     },
+    avatar: {
+        backgroundColor: (data) => {
+            if (data.category == 'work') {
+                return yellow[700];
+            }
+            if (data.category == 'money') {
+                return green[700];
+            }
+            if (data.category == 'todos') {
+                return pink[500];
+            }
+            return blue[500]
+        }
+    }
 }));
 
-const PostCard = ({ data, handleDelete, likesUpdate }) => {
-    const classes = useStyles();
+const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
+    const classes = useStyles(data);
     const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
     return (
         <Card elevation={1}>
             <CardHeader
+                avatar={
+                    <Avatar className={classes.avatar}>
+                        {data.category[0].toUpperCase()}
+                    </Avatar>
+                }
                 action={
                     <IconButton onClick={() => {
                         handleDelete(data.id);
@@ -58,7 +78,10 @@ const PostCard = ({ data, handleDelete, likesUpdate }) => {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+                <IconButton
+                    aria-label="add to favorites"
+                    onClick={() => favUpdate(data.id, data.favourite)}
+                >
                     <FavoriteIcon />
                 </IconButton>
                 <IconButton aria-label="share">
@@ -70,7 +93,7 @@ const PostCard = ({ data, handleDelete, likesUpdate }) => {
                 >
                     <ThumbUpAltIcon />
                 </IconButton>
-                <Badge color="secondary" badgeContent={data.likes}>
+                <Badge color="secondary" badgeContent={data.likes} max={2000}>
                     <Typography>Likes</Typography>
                 </Badge>
             </CardActions>
