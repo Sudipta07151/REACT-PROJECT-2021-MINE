@@ -78,7 +78,7 @@ const Navbar = () => {
             key: '1',
             icon: <LibraryBooksRoundedIcon />,
             label: 'LIBRARY',
-            link: '/Library'
+            link: '/LibraryMain'
         },
         {
             key: '2',

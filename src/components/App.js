@@ -1,11 +1,9 @@
 import React from 'react';
 import MCQ from './MCQ';
 import BlogsMain from './BlogsMain';
-import Library from './Library';
+import LibraryMain from './LibraryMain';
 import Navbar from './Navbar';
 import SignUp from './SignUp';
-import CreateMCQ from './createMCQ';
-import ViewAllMcq from './ViewAllMcq'
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
@@ -24,7 +22,7 @@ const App = () => {
             <Navbar className={classes.navbar} />
             <Switch>
                 <Route exact path='/'>
-                    <Library />
+                    <LibraryMain />
                 </Route>
                 <Route exact path='/MCQ'>
                     <MCQ />
@@ -38,8 +36,11 @@ const App = () => {
                 <Route exact path='/BlogsMain/:routes'>
                     <BlogsMain />
                 </Route>
-                <Route exact path='/Library'>
-                    <Library />
+                <Route exact path='/LibraryMain/:routes'>
+                    <LibraryMain />
+                </Route>
+                <Route exact path='/LibraryMain'>
+                    <LibraryMain />
                 </Route>
                 <Route exact path='/SignUp'>
                     <SignUp />
