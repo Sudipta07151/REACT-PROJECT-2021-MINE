@@ -24,6 +24,7 @@ const AllBlogPosts = () => {
     }
 
     const likesUpdate = (id, likes) => {
+        setUpdate(false);
         fetch(`http://localhost:8000/notes/${id}`, {
             method: 'PATCH',
             headers: { "Content-type": "application/json" },

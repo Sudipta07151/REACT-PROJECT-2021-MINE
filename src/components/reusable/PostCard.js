@@ -81,12 +81,12 @@ const PostCard = ({ data, handleDelete, likesUpdate, favUpdate }) => {
                 <IconButton
                     aria-label="add to favorites"
                     onClick={() => favUpdate(data.id, data.favourite)}
-                    color={data.favourite == false ? "" : "secondary"}
+                    color={data.favourite == false ? "primary" : "secondary"}
                 >
                     <FavoriteIcon />
                 </IconButton>
                 <IconButton aria-label="share">
-                    <BookmarkBorderIcon />
+                    <ShareIcon />
                 </IconButton>
                 <IconButton
                     aria-label="share"
