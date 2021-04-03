@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SearchArea = ({ handleSearch, searchBook }) => {
+const SearchArea = ({ handleSearch, searchBook, clearSearch }) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -91,7 +91,12 @@ const SearchArea = ({ handleSearch, searchBook }) => {
                             onClick={searchBook}
                         >
                             GO</Button>
-                        <Button variant="outlined" color="secondary" >CLEAR</Button>
+                        <Button
+                            variant="outlined"
+                            color="secondary"
+                            onClick={clearSearch}
+                        >
+                            CLEAR</Button>
                     </Toolbar>
                 </AppBar>
             </Container>

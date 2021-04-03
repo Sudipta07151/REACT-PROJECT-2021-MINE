@@ -16,6 +16,8 @@ const InsertNew = () => {
     React.useEffect(() => {
         if (books.length > 0)
             console.log(books[0].volumeInfo.imageLinks.thumbnail);
+        console.log(books);
+        console.log(searchTerm);
     }, [books]);
     const searchBook = async () => {
         const booksData = await axios.get(baseURL,
@@ -25,10 +27,14 @@ const InsertNew = () => {
         )
         setBooks(booksData.data.items);
     }
+    const clearSearchField = () => {
+        setBooks([]);
+        setSearchTerm('');
+    }
 
     return (
         <div>
-            <SearchArea handleSearch={onInputChange} searchBook={searchBook} />
+            <SearchArea handleSearch={onInputChange} searchBook={searchBook} clearSearch={clearSearchField} />
             {books.length > 0 ? <BookList books={books} /> : null}
         </div>
     );
