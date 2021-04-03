@@ -18,11 +18,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 345,
+        maxWidth: 300,
     },
     media: {
         height: 0,
-        paddingTop: '56.25%', // 16:9
+        paddingTop: "300px"// 16:9
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -36,10 +36,11 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         backgroundColor: red[500],
-    },
+    }
 }));
 
-const BookCard = ({ books }) => {
+
+const BookCard = ({ image, title, author, isbn }) => {
     const classes = useStyles();
 
 
@@ -49,23 +50,23 @@ const BookCard = ({ books }) => {
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         R
-          </Avatar>
+                    </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title={title}
+                subheader={author}
             />
             <CardMedia
                 className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
+                image={image}
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
+                    {`ISBN: ${isbn}`}
                 </Typography>
             </CardContent>
             <IconButton aria-label="add to favorites">

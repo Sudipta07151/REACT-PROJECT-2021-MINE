@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     appbar: {
-        backgroundColor: "transparent"
+        marginBottom: '20px'
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -66,7 +66,7 @@ const SearchArea = ({ handleSearch, searchBook }) => {
     return (
         <div className={classes.root}>
             <Container>
-                <AppBar position="static">
+                <AppBar position="static" className={classes.appbar}>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title} noWrap>
                             SEARCH
