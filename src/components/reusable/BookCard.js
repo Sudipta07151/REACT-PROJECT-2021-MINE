@@ -49,7 +49,7 @@ const BookCard = ({ image, title, author, isbn }) => {
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        R
+                        {title[0]}
                     </Avatar>
                 }
                 action={
