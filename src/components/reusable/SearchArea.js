@@ -61,8 +61,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SearchArea = ({ handleSearch, searchBook, clearSearch }) => {
+const SearchArea = ({ term, handleSearch, searchBook, clearSearch }) => {
     const classes = useStyles();
+    console.log("term : ",term)
+
+    // React.useEffect(()=>{
+    //     console.log("term : ",term)
+    // })
     return (
         <div className={classes.root}>
             <Container>
@@ -83,6 +88,7 @@ const SearchArea = ({ handleSearch, searchBook, clearSearch }) => {
                                 }}
                                 onChange={handleSearch}
                                 inputProps={{ 'aria-label': 'search' }}
+                                value={term}
                             />
                         </div>
                         <Button

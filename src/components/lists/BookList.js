@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import BookCard from '../reusable/BookCard';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import noimage from './noImage.jpg';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -14,10 +15,12 @@ const BookList = ({ books }) => {
     const classes = useStyles();
     React.useEffect(() => {
         books.map((bookData) => {
-            console.log(bookData);
-            console.log(bookData.volumeInfo.title);
-            console.log(bookData.volumeInfo.authors[0]);
-            console.log(bookData.volumeInfo.industryIdentifiers[0].identifier);
+            if(bookData.volumeInfo["imageLinks"]) console.log("image : ",bookData.volumeInfo.imageLinks.thumbnail)
+            else console.log("image unavailable")
+            // console.log(bookData);
+            // console.log(bookData.volumeInfo.title);
+            // console.log(bookData.volumeInfo.authors[0]);
+            // console.log(bookData.volumeInfo.industryIdentifiers[0].identifier);
         })
     })
     return (
@@ -27,10 +30,10 @@ const BookList = ({ books }) => {
                     return (
                         <Grid item md={3} xs={12} lg={3} xl={2} sm={6} key={index}>
                             <BookCard
-                                image={bookData.volumeInfo.imageLinks.thumbnail}
-                                title={bookData.volumeInfo.title}
-                                author={bookData.volumeInfo.authors[0]}
-                                isbn={bookData.volumeInfo.industryIdentifiers[0].identifier}
+                                image={(bookData.volumeInfo["imageLinks"])?bookData.volumeInfo.imageLinks.thumbnail:noimage}
+                                title={(bookData.volumeInfo["title"])?bookData.volumeInfo.title:'pata nahi bhai'}
+                                author={(bookData.volumeInfo["authors"])?bookData.volumeInfo.authors[0]:'pata nahi bhai'}
+                                isbn={(bookData.volumeInfo["industryIdentifiers"])?bookData.volumeInfo.industryIdentifiers[0].identifier:'pata nahi bhai'}
                             />
                         </Grid>
                     )
