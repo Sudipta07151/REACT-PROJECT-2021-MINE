@@ -28,13 +28,13 @@ const InsertNew = () => {
         setBooks(booksData.data.items);
     }
     const clearSearchField = () => {
-        setBooks([]);
+        // setBooks([]);
         setSearchTerm('');
     }
 
     return (
         <div>
-            <SearchArea handleSearch={onInputChange} searchBook={searchBook} clearSearch={clearSearchField} />
+            <SearchArea term={searchTerm} handleSearch={onInputChange} searchBook={searchBook} clearSearch={clearSearchField} />
             {books.length > 0 ? <BookList books={books} /> : null}
         </div>
     );
